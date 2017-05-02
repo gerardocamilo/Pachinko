@@ -146,11 +146,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         
         if contact.bodyA.node?.name == "ball" {
-            collisionBetween(ball: contact.bodyA.node!, object:
-                contact.bodyB.node!)
+            
+            if let bodyB = contact.bodyB.node {
+                collisionBetween(ball: contact.bodyA.node!, object: bodyB)
+            }
+            
         } else if contact.bodyB.node?.name == "ball" {
-            collisionBetween(ball: contact.bodyB.node!, object:
-                contact.bodyA.node!)
+            
+            if let bodyA = contact.bodyA.node {
+                collisionBetween(ball: contact.bodyB.node!, object: bodyA)
+            }
         }
     }
     
