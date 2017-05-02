@@ -1,6 +1,13 @@
 import SpriteKit
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
 
+    var scoreLabel: SKLabelNode!
+    var score: Int = 0 {
+        didSet {
+            scoreLabel.text = "Score: \(score)"
+        }
+    }
+    
     override func didMove(to view: SKView) {
         
         let background = SKSpriteNode(imageNamed: "background.jpg")
@@ -20,6 +27,14 @@ class GameScene: SKScene {
         makeSlot(at: CGPoint(x: 384, y: 0), isGood: false)
         makeSlot(at: CGPoint(x: 640, y: 0), isGood: true)
         makeSlot(at: CGPoint(x: 896, y:0), isGood: false)
+        
+        physicsWorld.contactDelegate = self
+        
+        scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
+        scoreLabel.text = "Score: 0"
+        scoreLabel.horizontalAlignmentMode = .right
+        scoreLabel.position = CGPoint(x: 980, y: 700)
+        addChild(scoreLabel)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with
@@ -32,6 +47,8 @@ class GameScene: SKScene {
                 ball.size.width / 2.0)
             ball.physicsBody!.restitution = 0.4
             ball.position = location
+            ball.name = "ball"
+            ball.physicsBody!.contactTestBitMask = ball.physicsBody!.collisionBitMask
             addChild(ball)
         }
         
@@ -53,13 +70,18 @@ class GameScene: SKScene {
         if isGood {
             slotBase = SKSpriteNode(imageNamed: "slotBaseGood")
             slotGlow = SKSpriteNode(imageNamed: "slotGlowGood")
+            slotBase.name = "good"
         } else {
             slotBase = SKSpriteNode(imageNamed: "slotBaseBad")
             slotGlow = SKSpriteNode(imageNamed: "slotGlowBad")
+            slotBase.name = "bad"
         }
         
         slotBase.position = position
         slotGlow.position = position
+        
+        slotBase.physicsBody = SKPhysicsBody(rectangleOf: slotBase.size)
+        slotBase.physicsBody!.isDynamic = false
         
         addChild(slotBase)
         addChild(slotGlow)
@@ -69,4 +91,30 @@ class GameScene: SKScene {
         slotGlow.run(spinForever)
     }
     
+    func collisionBetween(ball: SKNode, object: SKNode) {
+        if object.name == "good" {
+            destroy(ball: ball)
+            score += 1
+        } else if object.name == "bad" {
+            destroy(ball: ball)
+            score -= 1
+        }
+    }
+    
+    func destroy(ball: SKNode) {
+        ball.removeFromParent()
+    }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        
+        if contact.bodyA.node?.name == "ball" {
+            collisionBetween(ball: contact.bodyA.node!, object:
+                contact.bodyB.node!)
+        } else if contact.bodyB.node?.name == "ball" {
+            collisionBetween(ball: contact.bodyB.node!, object:
+                contact.bodyA.node!)
+        }
+    }
+    
 }
+
