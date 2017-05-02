@@ -42,6 +42,7 @@
 		82F7BF591EB78A7B00B8093A /* slotGlowGood.png in Resources */ = {isa = PBXBuildFile; fileRef = 82F7BF3D1EB78A7B00B8093A /* slotGlowGood.png */; };
 		82F7BF5A1EB78A7B00B8093A /* slotGlowGood@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82F7BF3E1EB78A7B00B8093A /* slotGlowGood@2x.png */; };
 		82F7BF5B1EB78A7B00B8093A /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 82F7BF3F1EB78A7B00B8093A /* spark.png */; };
+		82F7BF5D1EB80E0E00B8093A /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F7BF5C1EB80E0E00B8093A /* Helper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		82F7BF3D1EB78A7B00B8093A /* slotGlowGood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slotGlowGood.png; sourceTree = "<group>"; };
 		82F7BF3E1EB78A7B00B8093A /* slotGlowGood@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slotGlowGood@2x.png"; sourceTree = "<group>"; };
 		82F7BF3F1EB78A7B00B8093A /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		82F7BF5C1EB80E0E00B8093A /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				82F7BF0D1EB786F400B8093A /* GameScene.sks */,
 				82F7BF111EB786F400B8093A /* GameScene.swift */,
 				82F7BF131EB786F400B8093A /* GameViewController.swift */,
+				82F7BF5C1EB80E0E00B8093A /* Helper.swift */,
 				82F7BF151EB786F400B8093A /* Main.storyboard */,
 				82F7BF231EB78A7B00B8093A /* Content */,
 				82F7BF181EB786F400B8093A /* Assets.xcassets */,
@@ -267,6 +270,7 @@
 				82F7BF121EB786F400B8093A /* GameScene.swift in Sources */,
 				82F7BF141EB786F400B8093A /* GameViewController.swift in Sources */,
 				82F7BF0C1EB786F400B8093A /* AppDelegate.swift in Sources */,
+				82F7BF5D1EB80E0E00B8093A /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
